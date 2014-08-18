@@ -1,0 +1,5 @@
+packages/*
+winjs.todo/bin/*
+winjs.todo/Content/*
+winjs.todo/obj/*
+*.suo
