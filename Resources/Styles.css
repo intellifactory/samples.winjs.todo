@@ -53,17 +53,18 @@ body {
 }
 
 .label {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     border-radius: 4px;
     margin: 0 16px 0 8px;
     background-color: #02a45f;
 }
 
-/*.label:active {
+.task.selected .label {
     background-image: url("Images/x.png");
     border-radius: 0;
-}*/
+    background-position: center center;
+}
 
 input[type="text"] {
     margin: 0 0 16px;

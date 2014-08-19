@@ -87880,49 +87880,43 @@ define('WinJS',[
 ;
 (function()
 {
- var Global=this,Runtime=this.IntelliFactory.Runtime,document,WebSharper,Seq,Html,PageletExtensions,Default,List,winjs,todo,Client,Piglets,Piglet1,Pervasives,Strings,Controls,Operators,jQuery,WinJS;
+ var Global=this,Runtime=this.IntelliFactory.Runtime,document,WebSharper,Pervasives,List,Seq,Html,PageletExtensions,Default,winjs,todo,Client,Piglets,Piglet1,Pervasives1,Strings,Controls,Operators,jQuery,Number,WinJS;
  Runtime.Define(Global,{
   winjs:{
    todo:{
     Client:{
      Main:Runtime.Field(function()
      {
-      var _tasks_44_1,_keyword_51_1,_pivot_53_1,arg00;
-      _tasks_44_1=new Global.WinJS.Binding.List([{
-       Text:"buy milk",
-       LabelColor:"#02a45f",
-       Tags:["milk","breakfast"]
-      }]);
-      _keyword_51_1={
+      var _tasks_42_1,_keyword_44_1,_pivot_46_1,arg00;
+      _tasks_42_1=new Global.WinJS.Binding.List([]);
+      _keyword_44_1={
        contents:""
       };
-      _pivot_53_1=document.getElementById("pivot");
+      _pivot_46_1=document.getElementById("pivot");
       arg00=function()
       {
        var action,_arg10_,x;
-       Global.WinJS.Namespace.define("Tasks",{
-        Self:_tasks_44_1.createFiltered(function(task)
+       Global.WinJS.Namespace.define("Tasks",Pervasives.NewFromList(List.ofArray([["Self",_tasks_42_1.createFiltered(function(task)
+       {
+        return Seq.exists(function(tag)
         {
-         return Seq.exists(function(tag)
-         {
-          return tag.indexOf(_keyword_51_1.contents)>-1;
-         },task.Tags)?true:task.Text.indexOf(_keyword_51_1.contents)>-1;
-        })
-       });
+         return tag.indexOf(_keyword_44_1.contents)>-1;
+        },task.Tags)?true:task.Text.indexOf(_keyword_44_1.contents)>-1;
+       })]])));
        document.getElementById("search").addEventListener("querychanged",function(event)
        {
-        _keyword_51_1.contents=event.detail.queryText;
-        return _tasks_44_1.notifyReload();
+        _keyword_44_1.contents=event.detail.queryText;
+        return _tasks_42_1.notifyReload();
        },false);
        action=function(task)
        {
-        _tasks_44_1.push(task);
+        _tasks_42_1.push(task);
         return Client.ShowNotification("Saved!",function()
         {
-         _pivot_53_1.winControl.selectedIndex=0;
+         _pivot_46_1.winControl.selectedIndex=0;
         });
        };
-       _arg10_=Piglet1.WithSubmit(Pervasives.op_LessMultiplyGreater(Pervasives.op_LessMultiplyGreater(Pervasives.op_LessMultiplyGreater(Piglet1.Return(function(text)
+       _arg10_=Piglet1.WithSubmit(Pervasives1.op_LessMultiplyGreater(Pervasives1.op_LessMultiplyGreater(Pervasives1.op_LessMultiplyGreater(Piglet1.Return(function(text)
        {
         return function(labelColor)
         {
@@ -87968,6 +87962,17 @@ define('WinJS',[
          };
         };
        },x)])),"newTask");
+       jQuery("#remove").click(function()
+       {
+        jQuery(".task.selected").each(function()
+        {
+         var start,item;
+         start=Number(jQuery(this).index());
+         item=[];
+         _tasks_42_1.splice.apply(_tasks_42_1,[start,1].concat(item));
+         return;
+        });
+       });
        return Global.WinJS.UI.processAll().done(function()
        {
         return jQuery("body").css("visibility","visible");
@@ -87980,13 +87985,10 @@ define('WinJS',[
      {
       var notification;
       notification=jQuery("#notification");
-      notification.text(text).addClass("visible").delay(900).queue(function(arg10)
+      notification.text(text).addClass("visible").delay(900).queue(function()
       {
-       return function()
-       {
-        notification.removeClass("visible").empty().dequeue();
-        return onAfterHide(null);
-       }(arg10);
+       notification.removeClass("visible").empty().dequeue();
+       return onAfterHide(null);
       });
       return;
      }
@@ -87998,21 +88000,23 @@ define('WinJS',[
  {
   document=Runtime.Safe(Global.document);
   WebSharper=Runtime.Safe(Global.IntelliFactory.WebSharper);
+  Pervasives=Runtime.Safe(WebSharper.Pervasives);
+  List=Runtime.Safe(WebSharper.List);
   Seq=Runtime.Safe(WebSharper.Seq);
   Html=Runtime.Safe(WebSharper.Html);
   PageletExtensions=Runtime.Safe(Html.PageletExtensions);
   Default=Runtime.Safe(Html.Default);
-  List=Runtime.Safe(WebSharper.List);
   winjs=Runtime.Safe(Global.winjs);
   todo=Runtime.Safe(winjs.todo);
   Client=Runtime.Safe(todo.Client);
   Piglets=Runtime.Safe(WebSharper.Piglets);
   Piglet1=Runtime.Safe(Piglets.Piglet1);
-  Pervasives=Runtime.Safe(Piglets.Pervasives);
+  Pervasives1=Runtime.Safe(Piglets.Pervasives);
   Strings=Runtime.Safe(WebSharper.Strings);
   Controls=Runtime.Safe(Piglets.Controls);
   Operators=Runtime.Safe(Html.Operators);
   jQuery=Runtime.Safe(Global.jQuery);
+  Number=Runtime.Safe(Global.Number);
   return WinJS=Runtime.Safe(Global.WinJS);
  });
  Runtime.OnLoad(function()
