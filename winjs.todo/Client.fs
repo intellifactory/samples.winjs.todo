@@ -26,27 +26,20 @@ module Client =
             .AddClass("visible")
             .Delay(900)
             .Queue(
-                Func<Element, unit>(
-                    fun asd ->
-                        notification
-                            .RemoveClass("visible")
-                            .Empty()
-                            .Dequeue()
-                        |> ignore
+                fun _ ->
+                    notification
+                        .RemoveClass("visible")
+                        .Empty()
+                        .Dequeue()
+                    |> ignore
 
-                        onAfterHide ()
-                )
-                |> As<obj -> unit>
+                    onAfterHide ()   
             )
         |> ignore
 
     let Main =
-        let tasks =
-            WinJS.Binding.List.Create(
-                [|
-                    { Text = "buy milk"; LabelColor = "#02a45f"; Tags = [|"milk"; "breakfast"|] }
-                |]
-            )
+        
+        let tasks = WinJS.Binding.List.Create [||]
         
         let keyword = ref ""
 
@@ -55,11 +48,12 @@ module Client =
         Application.OnReady <| fun () ->
             WinJS.Namespace.define(
                 "Tasks",
-                New [
+                [
                     "Self" => tasks.createFiltered (fun task ->
                         Array.exists (fun (tag : string) -> tag.IndexOf !keyword > -1) task.Tags || task.Text.IndexOf !keyword > -1
                     )
                 ]
+                |> New
             )
             |> ignore
 
@@ -105,8 +99,17 @@ module Client =
             ])
                 .AppendTo "newTask"
 
-            WinJS.UI.processAll()._done (fun _ ->
-                (JQuery.Of "body").Css("visibility", "visible") |> As
+            JQuery.Of("#remove").Click(fun _ _ ->
+                JQuery.Of(".task.selected").Each(fun task _ ->
+                    tasks.splice(float <| JQuery.Of(task).Index(), 1.) |> ignore
+                )
+                |> ignore
+            )
+            |> ignore
+
+            WinJS.UI.processAll()._done (
+                fun _ ->
+                    (JQuery.Of "body").Css("visibility", "visible") |> As
             )
         
         WinJS.Application.start()
