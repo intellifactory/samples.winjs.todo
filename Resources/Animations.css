@@ -1,0 +1,11 @@
+﻿@-webkit-keyframes show {
+    to {
+        top: 0;
+    }
+}
+
+@-webkit-keyframes hide {
+    to {
+        left: 288px;
+    }
+}
