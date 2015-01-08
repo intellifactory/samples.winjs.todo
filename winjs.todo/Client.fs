@@ -7,9 +7,9 @@ open IntelliFactory.WebSharper.WinJS
 module Client =
     
     open IntelliFactory.WebSharper.JQuery
-    open IntelliFactory.WebSharper.Dom
+    open IntelliFactory.WebSharper.JavaScript
     open IntelliFactory.WebSharper.Piglets
-    open IntelliFactory.WebSharper.Html
+    open IntelliFactory.WebSharper.Html.Client
 
     type Task =
         {
@@ -43,7 +43,7 @@ module Client =
         
         let keyword = ref ""
 
-        let pivot = Document.Current.GetElementById "pivot"
+        let pivot = JS.Document.GetElementById "pivot"
 
         Application.OnReady <| fun () ->
             WinJS.Namespace.define(
@@ -57,9 +57,9 @@ module Client =
             )
             |> ignore
 
-            (Document.Current.GetElementById "search").AddEventListener(
+            (JS.Document.GetElementById "search").AddEventListener(
                 "querychanged",
-                fun (event : Event) ->
+                fun (event : Dom.Event) ->
                     keyword := event?detail?queryText
 
                     tasks.notifyReload()

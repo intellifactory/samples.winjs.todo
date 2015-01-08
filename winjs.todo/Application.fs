@@ -1,6 +1,7 @@
 ﻿namespace winjs.todo
 
 open IntelliFactory.WebSharper
+open IntelliFactory.WebSharper.JavaScript
 
 [<JavaScript>]
 type Application =
