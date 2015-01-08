@@ -20,6 +20,27 @@ declare module IntelliFactory.WebSharper {
 
 declare module IntelliFactory {
     module WebSharper {
+        module Html {
+            module Client {
+                module Activator {
+                    var Activate : {
+                        (): void;
+                    };
+                }
+                module HtmlContentExtensions {
+                    var IControlBody_SingleNode_Static : {
+                        (node: __ABBREV.__Dom.Node): __ABBREV.__Client.IControlBody;
+                    };
+                }
+                interface IControlBody {
+                    ReplaceInDom(x0: __ABBREV.__Dom.Node): void;
+                }
+                interface IControl {
+                    get_Body(): __ABBREV.__Client.IControlBody;
+                    get_Id(): string;
+                }
+            }
+        }
         module Arrays {
             var reverse : {
                 (array: __ABBREV.__WebSharper.ArrayProxy, offset: number, length: number): void;
@@ -308,6 +329,22 @@ declare module IntelliFactory {
                 <_M1, _M2, _M3>(arr1: _M1[], arr2: _M2[], arr3: _M3[]): any[];
             };
         }
+        module AsyncProxy {
+            var get_DefaultCancellationToken : {
+                (): __ABBREV.__WebSharper.CancellationTokenProxy;
+            };
+            var get_CancellationToken : {
+                (): any;
+            };
+        }
+        module CancellationTokenSource {
+            var CreateLinkedTokenSource1 : {
+                (tokens: __ABBREV.__WebSharper.CancellationTokenProxy[]): void;
+            };
+            var CreateLinkedTokenSource : {
+                (t1: __ABBREV.__WebSharper.CancellationTokenProxy, t2: __ABBREV.__WebSharper.CancellationTokenProxy): void;
+            };
+        }
         module Char {
             var GetNumericValue : {
                 (c: number): number;
@@ -329,6 +366,9 @@ declare module IntelliFactory {
             };
             var IsUpper : {
                 (c: number): boolean;
+            };
+            var Parse : {
+                (s: string): number;
             };
         }
         module List {
@@ -404,6 +444,9 @@ declare module IntelliFactory {
                         (x: _M2): boolean;
                     };
                 }, l1: __ABBREV.__List.T<_M1>, l2: __ABBREV.__List.T<_M2>): boolean;
+            };
+            var head : {
+                <_M1>(l: __ABBREV.__List.T<_M1>): _M1;
             };
             var init : {
                 <_M1>(s: number, f: {
@@ -536,6 +579,9 @@ declare module IntelliFactory {
                         (x: _M1): number;
                     };
                 }, l: __ABBREV.__List.T<_M1>): __ABBREV.__List.T<_M1>;
+            };
+            var tail : {
+                <_M1>(l: __ABBREV.__List.T<_M1>): __ABBREV.__List.T<_M1>;
             };
             var unzip : {
                 <_M1, _M2>(l: __ABBREV.__List.T<any>): any;
@@ -979,6 +1025,21 @@ declare module IntelliFactory {
                 }, s: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__WebSharper.seq<_M1>;
             };
         }
+        module Control {
+            var createEvent : {
+                <_M1, _M2>(add: {
+                    (x: _M2): void;
+                }, remove: {
+                    (x: _M2): void;
+                }, create: {
+                    (x: {
+                        (x: __ABBREV.__WebSharper.ObjectProxy): {
+                            (x: _M1): void;
+                        };
+                    }): _M2;
+                }): any;
+            };
+        }
         module Queue {
             interface QueueProxy<_T1> {
             }
@@ -1184,11 +1245,29 @@ declare module IntelliFactory {
             };
         }
         module IntrinsicFunctionProxy {
+            var BoundsCheck : {
+                <_M1>(arr: _M1[], n: number): void;
+            };
+            var BoundsCheck2D : {
+                <_M1>(arr: any, n1: number, n2: number): void;
+            };
+            var SetArray : {
+                <_M1>(arr: _M1[], n: number, x: _M1): void;
+            };
+            var GetArray : {
+                <_M1>(arr: _M1[], n: number): _M1;
+            };
             var GetArraySub : {
                 <_M1>(arr: _M1[], start: number, len: number): _M1[];
             };
             var SetArraySub : {
                 <_M1>(arr: _M1[], start: number, len: number, src: _M1[]): void;
+            };
+            var GetArray2D : {
+                <_M1>(arr: any, n1: number, n2: number): _M1;
+            };
+            var SetArray2D : {
+                <_M1>(arr: any, n1: number, n2: number, x: _M1): void;
             };
             var Array2DZeroCreate : {
                 <_M1>(n: number, m: number): any;
@@ -1203,10 +1282,16 @@ declare module IntelliFactory {
                 <_M1>(arr: __ABBREV.__WebSharper.ArrayProxy): number;
             };
         }
-        module Pervasives {
-            var NewFromList : {
-                <_M1>(fields: __ABBREV.__WebSharper.seq<any>): _M1;
-            };
+        module JavaScript {
+            module Pervasives {
+                var NewFromList : {
+                    <_M1>(fields: __ABBREV.__WebSharper.seq<any>): _M1;
+                };
+            }
+            module JS {
+                interface Kind {
+                }
+            }
         }
         module Remoting {
             interface IAjaxProvider {
@@ -1257,27 +1342,36 @@ declare module IntelliFactory {
                 <_M1>(json: __ABBREV.__WebSharper.ObjectProxy): _M1;
             };
         }
-        module JavaScript {
-            interface Kind {
-            }
-        }
         interface ArrayProxy {
         }
         interface AsyncProxy {
+        }
+        interface CancellationTokenProxy {
+        }
+        interface ActionProxy {
+        }
+        interface CancellationTokenRegistrationProxy {
+            Dispose(): void;
+        }
+        interface CancellationTokenSource {
+            Cancel(): void;
+            Cancel1(throwOnFirstException: boolean): void;
+            CancelAfter(delay: number): void;
+            get_IsCancellationRequested(): boolean;
         }
         interface AsyncBuilderProxy {
         }
         interface Char {
         }
-        interface ChoiceProxy11<_T1, _T2> {
+        interface ChoiceProxy3<_T1, _T2> {
         }
-        interface ChoiceProxy3<_T1, _T2, _T3> {
+        interface ChoiceProxy11<_T1, _T2, _T3> {
         }
-        interface ChoiceProxy1<_T1, _T2, _T3, _T4> {
+        interface ChoiceProxy2<_T1, _T2, _T3, _T4> {
         }
-        interface ChoiceProxy2<_T1, _T2, _T3, _T4, _T5> {
+        interface ChoiceProxy4<_T1, _T2, _T3, _T4, _T5> {
         }
-        interface ChoiceProxy4<_T1, _T2, _T3, _T4, _T5, _T6> {
+        interface ChoiceProxy1<_T1, _T2, _T3, _T4, _T5, _T6> {
         }
         interface ChoiceProxy<_T1, _T2, _T3, _T4, _T5, _T6, _T7> {
         }
@@ -1285,9 +1379,21 @@ declare module IntelliFactory {
         }
         interface DoubleProxy {
         }
+        interface EnumProxy {
+        }
         interface ExceptionProxy {
         }
         interface MatchFailureExceptionProxy {
+        }
+        interface IndexOutOfRangeExceptionProxy {
+        }
+        interface OperationCanceledExceptionProxy {
+        }
+        interface ArgumentExceptionProxy {
+        }
+        interface InvalidOperationExceptionProxy {
+        }
+        interface AggregateException {
         }
         interface IDisposableProxy {
             Dispose(): void;
@@ -1314,6 +1420,8 @@ declare module IntelliFactory {
         }
         interface OptionProxy<_T1> {
         }
+        interface PrintfFormat {
+        }
         interface TimeSpanProxy {
         }
         interface ref<_T1> {
@@ -1322,6 +1430,8 @@ declare module IntelliFactory {
 }
 declare module __ABBREV {
     
+    export import __Dom = IntelliFactory.WebSharper.JavaScript.Dom;
+    export import __Client = IntelliFactory.WebSharper.Html.Client;
     export import __WebSharper = IntelliFactory.WebSharper;
     export import __List = IntelliFactory.WebSharper.List;
     export import __Remoting = IntelliFactory.WebSharper.Remoting;
@@ -1329,419 +1439,10 @@ declare module __ABBREV {
 
 declare module IntelliFactory {
     module WebSharper {
-        module Html {
-            module Element {
-                var New : {
-                    (html: __ABBREV.__Interfaces.IHtmlProvider, name: string): __ABBREV.__Html.Element;
-                };
-            }
-            module Interfaces {
-                interface IHtmlProvider {
-                    CreateTextNode(x0: string): __ABBREV.__Dom.Text;
-                    CreateElement(x0: string): __ABBREV.__Dom.Element;
-                    SetAttribute(x0: __ABBREV.__Dom.Node, x1: string, x2: string): void;
-                    AppendAttribute(x0: __ABBREV.__Dom.Node, x1: __ABBREV.__Dom.Attr): void;
-                    RemoveAttribute(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    GetAttribute(x0: __ABBREV.__Dom.Node, x1: string): string;
-                    HasAttribute(x0: __ABBREV.__Dom.Node, x1: string): boolean;
-                    CreateAttribute(x0: string): __ABBREV.__Dom.Attr;
-                    GetProperty<_M1>(x0: __ABBREV.__Dom.Node, x1: string): _M1;
-                    SetProperty<_M1>(x0: __ABBREV.__Dom.Node, x1: string, x2: _M1): void;
-                    AppendNode(x0: __ABBREV.__Dom.Node, x1: __ABBREV.__Dom.Node): void;
-                    Clear(x0: __ABBREV.__Dom.Node): void;
-                    Remove(x0: __ABBREV.__Dom.Node): void;
-                    SetText(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    GetText(x0: __ABBREV.__Dom.Node): string;
-                    SetHtml(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    GetHtml(x0: __ABBREV.__Dom.Node): string;
-                    SetValue(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    GetValue(x0: __ABBREV.__Dom.Node): string;
-                    SetStyle(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    SetCss(x0: __ABBREV.__Dom.Node, x1: string, x2: string): void;
-                    AddClass(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    RemoveClass(x0: __ABBREV.__Dom.Node, x1: string): void;
-                    OnLoad(x0: __ABBREV.__Dom.Node, x1: {
-                        (): void;
-                    }): void;
-                    OnDocumentReady(x0: {
-                        (): void;
-                    }): void;
-                }
-            }
-            module Activator {
-                interface IControl {
-                    get_Body(): __ABBREV.__Html.IPagelet;
-                }
-                var Activate : {
-                    (): void;
-                };
-            }
-            module EventsPervasives {
-                var Events : {
-                    (): __ABBREV.__Events.IEventSupport;
-                };
-            }
-            module Events {
-                interface IEventSupport {
-                    OnClick<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnDoubleClick<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseDown<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseEnter<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseLeave<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseMove<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseOut<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnMouseUp<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnKeyDown<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnKeyPress<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnKeyUp<_M1>(x0: {
-                        (x: _M1): {
-                            (x: any): void;
-                        };
-                    }, x1: _M1): void;
-                    OnBlur<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnChange<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnFocus<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnError<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnLoad<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnUnLoad<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnResize<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnScroll<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnSelect<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                    OnSubmit<_M1>(x0: {
-                        (x: _M1): void;
-                    }, x1: _M1): void;
-                }
-                interface MouseEvent {
-                    X: number;
-                    Y: number;
-                }
-                interface CharacterCode {
-                    CharacterCode: number;
-                }
-                interface KeyCode {
-                    KeyCode: number;
-                }
-            }
-            module Default {
-                module HTML5 {
-                    var Tags : {
-                        (): __ABBREV.__Html.Html5TagBuilder;
-                    };
-                    var Attr : {
-                        (): __ABBREV.__Html.Html5AttributeBuilder;
-                    };
-                }
-                var OnLoad : {
-                    (init: {
-                        (): void;
-                    }): void;
-                };
-                var Text : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var A : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var B : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Body : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Br : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Button : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Code : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Div : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Em : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Form : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var H1 : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var H2 : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var H3 : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var H4 : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Head : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Hr : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var I : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var IFrame : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Img : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Input : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var LI : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var OL : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var P : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Pre : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Script : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Select : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Span : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var Table : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TBody : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TD : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TextArea : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TFoot : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TH : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var THead : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var TR : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var UL : {
-                    <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var NewAttr : {
-                    (x: string): {
-                        (x: string): __ABBREV.__Html.IPagelet;
-                    };
-                };
-                var Action : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Align : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Alt : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var HRef : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Height : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Id : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Name : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var RowSpan : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Selected : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Src : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var VAlign : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Width : {
-                    (x: string): __ABBREV.__Html.IPagelet;
-                };
-                var Tags : {
-                    (): __ABBREV.__Html.TagBuilder;
-                };
-                var Deprecated : {
-                    (): __ABBREV.__Html.DeprecatedTagBuilder;
-                };
-                var Attr : {
-                    (): __ABBREV.__Html.AttributeBuilder;
-                };
-            }
-            module Operators {
-                var add : {
-                    <_M1>(el: __ABBREV.__Html.Element, inner: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                };
-                var OnAfterRender : {
-                    <_M1>(f: {
-                        (x: _M1): void;
-                    }, w: _M1): void;
-                };
-                var OnBeforeRender : {
-                    <_M1>(f: {
-                        (x: _M1): void;
-                    }, w: _M1): void;
-                };
-            }
-            module PageletExtensions {
-                var IPagelet_AppendTo : {
-                    (p: __ABBREV.__Html.IPagelet, targetId: string): void;
-                };
-            }
-            interface IPagelet {
-                Render(): void;
-                get_Body(): __ABBREV.__Dom.Node;
-            }
-            interface Element {
-                OnLoad(f: {
-                    (): void;
-                }): void;
-                AppendI(pl: __ABBREV.__Html.IPagelet): void;
-                AppendN(node: __ABBREV.__Dom.Node): void;
-                Render(): void;
-                get_Body(): __ABBREV.__Dom.Node;
-                get_Text(): string;
-                set_Text(x: string): void;
-                get_Html(): string;
-                set_Html(x: string): void;
-                get_Value(): string;
-                set_Value(x: string): void;
-                get_Id(): string;
-                get_HtmlProvider(): __ABBREV.__Interfaces.IHtmlProvider;
-                get_Item(name: string): string;
-                set_Item(name: string, value: string): void;
-            }
-            interface Html5TagBuilder {
-                NewTag<_M1>(name: string, children: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-            }
-            interface DeprecatedTagBuilder {
-                NewTag<_M1>(name: string, children: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-            }
-            interface TagBuilder {
-                NewTag<_M1>(name: string, children: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-                text(data: string): __ABBREV.__Html.IPagelet;
-                Div<_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Html.Element;
-            }
-            interface Html5AttributeBuilder {
-                NewAttr(name: string, value: string): __ABBREV.__Html.IPagelet;
-            }
-            interface DeprecatedAttributeBuilder {
-                NewAttr(name: string, value: string): __ABBREV.__Html.IPagelet;
-            }
-            interface AttributeBuilder {
-                NewAttr(name: string, value: string): __ABBREV.__Html.IPagelet;
-                Class(x: string): __ABBREV.__Html.IPagelet;
-                get_CheckBox(): __ABBREV.__Html.IPagelet;
-                get_Hidden(): __ABBREV.__Html.IPagelet;
-                get_Radio(): __ABBREV.__Html.IPagelet;
-                get_Reset(): __ABBREV.__Html.IPagelet;
-                get_Submit(): __ABBREV.__Html.IPagelet;
-                get_Password(): __ABBREV.__Html.IPagelet;
-                get_TextField(): __ABBREV.__Html.IPagelet;
-            }
-        }
-    }
-}
-declare module __ABBREV {
-    
-    export import __Interfaces = IntelliFactory.WebSharper.Html.Interfaces;
-    export import __Html = IntelliFactory.WebSharper.Html;
-    export import __Dom = IntelliFactory.WebSharper.Dom;
-    export import __Events = IntelliFactory.WebSharper.Html.Events;
-    export import __WebSharper = IntelliFactory.WebSharper;
-}
-
-declare module IntelliFactory {
-    module WebSharper {
         module Testing {
             module Assert {
                 var Raises : {
-                    <_M1>(f: {
+                    (f: {
                         (): void;
                     }): void;
                 };
@@ -1854,7 +1555,392 @@ declare module __ABBREV {
 
 declare module IntelliFactory {
     module WebSharper {
+        module Html {
+            module Client {
+                module Element {
+                    var New : {
+                        (html: __ABBREV.__Interfaces.IHtmlProvider, name: string): __ABBREV.__Client.Element;
+                    };
+                }
+                module Interfaces {
+                    interface IHtmlProvider {
+                        CreateTextNode(x0: string): __ABBREV.__Dom.Text;
+                        CreateElement(x0: string): __ABBREV.__Dom.Element;
+                        SetAttribute(x0: __ABBREV.__Dom.Node, x1: string, x2: string): void;
+                        AppendAttribute(x0: __ABBREV.__Dom.Node, x1: __ABBREV.__Dom.Attr): void;
+                        RemoveAttribute(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        GetAttribute(x0: __ABBREV.__Dom.Node, x1: string): string;
+                        HasAttribute(x0: __ABBREV.__Dom.Node, x1: string): boolean;
+                        CreateAttribute(x0: string): __ABBREV.__Dom.Attr;
+                        GetProperty<_M1>(x0: __ABBREV.__Dom.Node, x1: string): _M1;
+                        SetProperty<_M1>(x0: __ABBREV.__Dom.Node, x1: string, x2: _M1): void;
+                        AppendNode(x0: __ABBREV.__Dom.Node, x1: __ABBREV.__Dom.Node): void;
+                        Clear(x0: __ABBREV.__Dom.Node): void;
+                        Remove(x0: __ABBREV.__Dom.Node): void;
+                        SetText(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        GetText(x0: __ABBREV.__Dom.Node): string;
+                        SetHtml(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        GetHtml(x0: __ABBREV.__Dom.Node): string;
+                        SetValue(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        GetValue(x0: __ABBREV.__Dom.Node): string;
+                        SetStyle(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        SetCss(x0: __ABBREV.__Dom.Node, x1: string, x2: string): void;
+                        AddClass(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        RemoveClass(x0: __ABBREV.__Dom.Node, x1: string): void;
+                        OnLoad(x0: __ABBREV.__Dom.Node, x1: {
+                            (): void;
+                        }): void;
+                        OnDocumentReady(x0: {
+                            (): void;
+                        }): void;
+                    }
+                }
+                module EventsPervasives {
+                    var Events : {
+                        (): __ABBREV.__Events.IEventSupport;
+                    };
+                }
+                module Events {
+                    interface IEventSupport {
+                        OnClick<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnDoubleClick<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseDown<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseEnter<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseLeave<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseMove<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseOut<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnMouseUp<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnKeyDown<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnKeyPress<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnKeyUp<_M1>(x0: {
+                            (x: _M1): {
+                                (x: any): void;
+                            };
+                        }, x1: _M1): void;
+                        OnBlur<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnChange<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnFocus<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnError<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnLoad<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnUnLoad<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnResize<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnScroll<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnSelect<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                        OnSubmit<_M1>(x0: {
+                            (x: _M1): void;
+                        }, x1: _M1): void;
+                    }
+                    interface MouseEvent {
+                        X: number;
+                        Y: number;
+                    }
+                    interface CharacterCode {
+                        CharacterCode: number;
+                    }
+                    interface KeyCode {
+                        KeyCode: number;
+                    }
+                }
+                module Default {
+                    var OnLoad : {
+                        (init: {
+                            (): void;
+                        }): void;
+                    };
+                    var Text : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var A : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var B : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Body : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Br : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Button : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Code : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Div : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Em : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Form : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var H1 : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var H2 : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var H3 : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var H4 : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Head : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Hr : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var I : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var IFrame : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Img : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Input : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var LI : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var OL : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var P : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Pre : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Script : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Select : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Span : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var Table : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TBody : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TD : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TextArea : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TFoot : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TH : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var THead : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var TR : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var UL : {
+                        <_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var NewAttr : {
+                        (x: string): {
+                            (x: string): __ABBREV.__Client.Pagelet;
+                        };
+                    };
+                    var Action : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Align : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Alt : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var HRef : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Height : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Id : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Name : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var RowSpan : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Selected : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Src : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var VAlign : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Width : {
+                        (x: string): __ABBREV.__Client.Pagelet;
+                    };
+                    var Tags : {
+                        (): __ABBREV.__Client.TagBuilder;
+                    };
+                    var Deprecated : {
+                        (): __ABBREV.__Client.DeprecatedTagBuilder;
+                    };
+                    var Attr : {
+                        (): __ABBREV.__Client.AttributeBuilder;
+                    };
+                }
+                module Operators {
+                    var add : {
+                        <_M1>(el: __ABBREV.__Client.Element, inner: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    };
+                    var OnAfterRender : {
+                        <_M1>(f: {
+                            (x: _M1): void;
+                        }, w: _M1): void;
+                    };
+                    var OnBeforeRender : {
+                        <_M1>(f: {
+                            (x: _M1): void;
+                        }, w: _M1): void;
+                    };
+                }
+                interface Pagelet {
+                    Render(): void;
+                    AppendTo(targetId: string): void;
+                    ReplaceInDom(node: __ABBREV.__Dom.Node): void;
+                }
+                interface Element {
+                    Render(): void;
+                    OnLoad(f: {
+                        (): void;
+                    }): void;
+                    AppendI(pl: __ABBREV.__Client.Pagelet): void;
+                    AppendN(node: __ABBREV.__Dom.Node): void;
+                    get_Body(): __ABBREV.__Dom.Node;
+                    get_Text(): string;
+                    set_Text(x: string): void;
+                    get_Html(): string;
+                    set_Html(x: string): void;
+                    get_Value(): string;
+                    set_Value(x: string): void;
+                    get_Id(): string;
+                    get_HtmlProvider(): __ABBREV.__Interfaces.IHtmlProvider;
+                    get_Item(name: string): string;
+                    set_Item(name: string, value: string): void;
+                }
+                interface DeprecatedTagBuilder {
+                    NewTag<_M1>(name: string, children: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                }
+                interface TagBuilder {
+                    NewTag<_M1>(name: string, children: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                    text(data: string): __ABBREV.__Client.Pagelet;
+                    Div<_M1>(x: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Client.Element;
+                }
+                interface DeprecatedAttributeBuilder {
+                    NewAttr(name: string, value: string): __ABBREV.__Client.Pagelet;
+                }
+                interface AttributeBuilder {
+                    NewAttr(name: string, value: string): __ABBREV.__Client.Pagelet;
+                    Class(x: string): __ABBREV.__Client.Pagelet;
+                }
+            }
+        }
+    }
+}
+declare module __ABBREV {
+    
+    export import __Interfaces = IntelliFactory.WebSharper.Html.Client.Interfaces;
+    export import __Client = IntelliFactory.WebSharper.Html.Client;
+    export import __Dom = IntelliFactory.WebSharper.JavaScript.Dom;
+    export import __Events = IntelliFactory.WebSharper.Html.Client.Events;
+    export import __WebSharper = IntelliFactory.WebSharper;
+}
+
+declare module IntelliFactory {
+    module WebSharper {
         module Control {
+            module MailboxProcessor {
+                var Start : {
+                    (initial: {
+                        (x: __ABBREV.__Control.MailboxProcessor<any>): any;
+                    }, token: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__WebSharper.CancellationTokenProxy>): __ABBREV.__Control.MailboxProcessor<any>;
+                };
+            }
             module EventModule {
                 var Choose : {
                     <_M1, _M2, _M3>(c: {
@@ -1891,7 +1977,7 @@ declare module IntelliFactory {
                 };
                 var Split : {
                     <_M1, _M2, _M3, _M4>(f: {
-                        (x: _M1): __ABBREV.__WebSharper.ChoiceProxy11<_M2, _M3>;
+                        (x: _M1): __ABBREV.__WebSharper.ChoiceProxy3<_M2, _M3>;
                     }, e: any): any;
                 };
             }
@@ -1913,7 +1999,7 @@ declare module IntelliFactory {
                 };
                 var Split : {
                     <_M1, _M2, _M3>(f: {
-                        (x: _M1): __ABBREV.__WebSharper.ChoiceProxy11<_M2, _M3>;
+                        (x: _M1): __ABBREV.__WebSharper.ChoiceProxy3<_M2, _M3>;
                     }, e: __ABBREV.__Control.IObservableProxy<_M1>): any;
                 };
             }
@@ -1927,18 +2013,77 @@ declare module IntelliFactory {
             }
             interface FSharpEvent<_T1> {
             }
+            interface IDelegateEventProxy<_T1> {
+                AddHandler(x0: _T1): void;
+                RemoveHandler(x0: _T1): void;
+            }
+            interface ChannelProxy<_T1> {
+            }
+            interface TimeoutExceptionProxy {
+            }
+            interface MailboxProcessor<_T1> {
+                Start(): void;
+                TryReceive(timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                Receive(timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                PostAndTryAsyncReply<_M1>(msgf: {
+                    (x: __ABBREV.__Control.ChannelProxy<_M1>): _T1;
+                }, timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                PostAndAsyncReply<_M1>(msgf: {
+                    (x: __ABBREV.__Control.ChannelProxy<_M1>): _T1;
+                }, timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                TryScan<_M1>(scanner: {
+                    (x: _T1): __ABBREV.__WebSharper.OptionProxy<any>;
+                }, timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                Scan<_M1>(scanner: {
+                    (x: _T1): __ABBREV.__WebSharper.OptionProxy<any>;
+                }, timeout: __ABBREV.__WebSharper.OptionProxy<number>): any;
+                startAsync(a: any): void;
+                resume(): void;
+                dequeue(): _T1;
+                get_Error(): any;
+                get_DefaultTimeout(): number;
+                set_DefaultTimeout(v: number): void;
+                get_CurrentQueueLength(): number;
+            }
         }
     }
 }
 declare module __ABBREV {
     
-    export import __WebSharper = IntelliFactory.WebSharper;
     export import __Control = IntelliFactory.WebSharper.Control;
+    export import __WebSharper = IntelliFactory.WebSharper;
 }
 
 declare module IntelliFactory {
     module WebSharper {
         module Collections {
+            module HashSet {
+                interface HashSet<_T1> {
+                    Add(item: _T1): boolean;
+                    Clear(): void;
+                    Contains(item: _T1): boolean;
+                    CopyTo(arr: _T1[]): void;
+                    ExceptWith(xs: __ABBREV.__WebSharper.seq<_T1>): void;
+                    GetEnumerator(): __ABBREV.__WebSharper.IEnumeratorProxy<_T1>;
+                    IntersectWith(xs: __ABBREV.__WebSharper.seq<_T1>): void;
+                    IsProperSubsetOf(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    IsProperSupersetOf(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    IsSubsetOf(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    IsSupersetOf(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    Overlaps(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    Remove(item: _T1): boolean;
+                    RemoveWhere(cond: {
+                        (x: _T1): boolean;
+                    }): void;
+                    SetEquals(xs: __ABBREV.__WebSharper.seq<_T1>): boolean;
+                    SymmetricExceptWith(xs: __ABBREV.__WebSharper.seq<_T1>): void;
+                    UnionWith(xs: __ABBREV.__WebSharper.seq<_T1>): void;
+                    arrContains(item: _T1, arr: __ABBREV.__JavaScript.Array<_T1>): boolean;
+                    arrRemove(item: _T1, arr: __ABBREV.__JavaScript.Array<_T1>): boolean;
+                    add(item: _T1): boolean;
+                    get_Count(): number;
+                }
+            }
             module LinkedList {
                 interface NodeProxy<_T1> {
                 }
@@ -2154,8 +2299,9 @@ declare module IntelliFactory {
 }
 declare module __ABBREV {
     
-    export import __LinkedList = IntelliFactory.WebSharper.Collections.LinkedList;
     export import __WebSharper = IntelliFactory.WebSharper;
+    export import __JavaScript = IntelliFactory.WebSharper.JavaScript;
+    export import __LinkedList = IntelliFactory.WebSharper.Collections.LinkedList;
     export import __ResizeArray = IntelliFactory.WebSharper.Collections.ResizeArray;
     export import __Collections = IntelliFactory.WebSharper.Collections;
 }
@@ -2284,849 +2430,6 @@ declare module __ABBREV {
 }
 
 declare module IntelliFactory {
-    module Formlet {
-        module Base {
-            module Tree {
-                interface Edit<_T1> {
-                    GetEnumerator(): __ABBREV.__WebSharper.IEnumeratorProxy1;
-                    GetEnumerator1(): __ABBREV.__WebSharper.IEnumeratorProxy<_T1>;
-                    get_Sequence(): __ABBREV.__WebSharper.seq<_T1>;
-                }
-                interface Tree<_T1> {
-                    Map<_M1>(f: {
-                        (x: _T1): _M1;
-                    }): __ABBREV.__Tree.Tree<_M1>;
-                    GetEnumerator(): __ABBREV.__WebSharper.IEnumeratorProxy1;
-                    GetEnumerator1(): __ABBREV.__WebSharper.IEnumeratorProxy<_T1>;
-                    get_Sequence(): __ABBREV.__WebSharper.seq<_T1>;
-                }
-                var ShowEdit : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): string;
-                };
-                var Count : {
-                    <_M1>(t: __ABBREV.__Tree.Tree<_M1>): number;
-                };
-                var Range : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): any;
-                };
-                var FromSequence : {
-                    <_M1>(vs: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Tree.Tree<_M1>;
-                };
-                var ReplacedTree : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M1>;
-                };
-                var Apply : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M1>;
-                };
-                var Set : {
-                    <_M1>(value: _M1): __ABBREV.__Tree.Edit<_M1>;
-                };
-                var Transform : {
-                    <_M1, _M2>(f: {
-                        (x: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M2>;
-                    }, edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M2>;
-                };
-                var Delete : {
-                    <_M1>(): __ABBREV.__Tree.Edit<_M1>;
-                };
-                var FlipEdit : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M1>;
-                };
-                var DeepFlipEdit : {
-                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M1>;
-                };
-            }
-            module Result {
-                var Join : {
-                    (res: __ABBREV.__Base.Result<__ABBREV.__Base.Result<any>>): __ABBREV.__Base.Result<any>;
-                };
-                var Apply : {
-                    <_M1>(f: __ABBREV.__Base.Result<{
-                        (x: any): _M1;
-                    }>, r: __ABBREV.__Base.Result<any>): __ABBREV.__Base.Result<_M1>;
-                };
-                var OfOption : {
-                    (o: __ABBREV.__WebSharper.OptionProxy<any>): __ABBREV.__Base.Result<any>;
-                };
-                var Map : {
-                    <_M1>(f: {
-                        (x: any): _M1;
-                    }, res: __ABBREV.__Base.Result<any>): __ABBREV.__Base.Result<_M1>;
-                };
-                var Sequence : {
-                    (rs: __ABBREV.__WebSharper.seq<__ABBREV.__Base.Result<any>>): __ABBREV.__Base.Result<__ABBREV.__List.T<any>>;
-                };
-            }
-            interface Layout<_T1> {
-                Apply: {
-                    (x: any): __ABBREV.__WebSharper.OptionProxy<any>;
-                };
-            }
-            interface Container<_T1> {
-                Body: _T1;
-                SyncRoot: __ABBREV.__WebSharper.ObjectProxy;
-                Insert: {
-                    (x: number): {
-                        (x: _T1): void;
-                    };
-                };
-                Remove: {
-                    (x: __ABBREV.__WebSharper.seq<_T1>): void;
-                };
-            }
-            interface Reactive {
-                Reactive: __ABBREV.__Reactive.IReactive;
-            }
-            interface LayoutUtils {
-                Default<_M1>(): any;
-                Delay<_M1>(f: {
-                    (): any;
-                }): any;
-                New<_M1>(container: {
-                    (): any;
-                }): any;
-            }
-            interface Result<_T1> {
-            }
-            interface Form<_T1, _T2> {
-                Dispose(): void;
-                Body: any;
-                Dispose1: {
-                    (): void;
-                };
-                Notify: {
-                    (x: __ABBREV.__WebSharper.ObjectProxy): void;
-                };
-                State: any;
-            }
-            interface IFormlet<_T1, _T2> {
-                Build(): __ABBREV.__Base.Form<_T1, _T2>;
-                MapResult<_M1>(x0: {
-                    (x: __ABBREV.__Base.Result<_T2>): __ABBREV.__Base.Result<_M1>;
-                }): __ABBREV.__Base.IFormlet<_T1, _T2>;
-                get_Layout(): any;
-            }
-            interface Utils<_T1> {
-                Reactive: __ABBREV.__Reactive.IReactive;
-                DefaultLayout: any;
-            }
-            interface FormletProvider<_T1> {
-                BuildForm<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.Form<_T1, _M1>;
-                New<_M1>(build: {
-                    (): __ABBREV.__Base.Form<_T1, _M1>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                FromState<_M1>(state: any): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                WithLayout<_M1>(layout: any, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                InitWith<_M1>(value: _M1, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                ReplaceFirstWithFailure<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                InitWithFailure<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                ApplyLayout<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                AppendLayout<_M1>(layout: any, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                MapBody<_M1>(f: {
-                    (x: _T1): _T1;
-                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                WithLayoutOrDefault<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                MapResult<_M1, _M2>(f: {
-                    (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Base.Result<_M2>;
-                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Map<_M1, _M2>(f: {
-                    (x: _M1): _M2;
-                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Apply<_M1, _M2>(f: __ABBREV.__Base.IFormlet<_T1, {
-                    (x: _M1): _M2;
-                }>, x: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Return<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Fail<_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Base.Form<_T1, _M1>;
-                FailWith<_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                ReturnEmpty<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Never<_M1>(): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Empty<_M1>(): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                EmptyForm<_M1>(): __ABBREV.__Base.Form<_T1, _M1>;
-                Join<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Switch<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                FlipBody<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                SelectMany<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__List.T<_M1>>;
-                WithNotificationChannel<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, any>;
-                Replace<_M1, _M2>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
-                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Deletable<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>;
-                WithCancelation<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, cancelFormlet: __ABBREV.__Base.IFormlet<_T1, void>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>;
-                Bind<_M1, _M2>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
-                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Delay<_M1>(f: {
-                    (): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Sequence<_M1, _M2>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Base.IFormlet<_T1, _M2>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__List.T<_M2>>;
-                LiftResult<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.Result<_M1>>;
-                WithNotification<_M1>(notify: {
-                    (x: __ABBREV.__WebSharper.ObjectProxy): void;
-                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                BindWith<_M1, _M2>(hF: {
-                    (x: _T1): {
-                        (x: _T1): _T1;
-                    };
-                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
-                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
-            }
-            interface FormletBuilder<_T1> {
-                Return<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                Bind<_M1, _M2>(x: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
-                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
-                Delay<_M1>(f: {
-                    (): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
-                ReturnFrom<_M1>(f: _M1): _M1;
-            }
-            interface IValidatorProvider {
-                Matches(x0: string, x1: string): boolean;
-            }
-            interface Validator {
-                Validate<_M1, _M2, _M3>(f: {
-                    (x: _M2): boolean;
-                }, msg: string, flet: _M3): _M3;
-                Is<_M1, _M2, _M3>(f: {
-                    (x: _M1): boolean;
-                }, m: string, flet: _M2): _M2;
-                IsNotEmpty<_M1, _M2>(msg: string, flet: _M2): _M2;
-                IsRegexMatch<_M1, _M2>(regex: string, msg: string, flet: _M1): _M1;
-                IsEmail<_M1, _M2>(msg: string): {
-                    (x: _M1): _M1;
-                };
-                IsInt<_M1, _M2>(msg: string): {
-                    (x: _M1): _M1;
-                };
-                IsFloat<_M1, _M2>(msg: string): {
-                    (x: _M1): _M1;
-                };
-                IsTrue<_M1, _M2>(msg: string, flet: _M1): _M1;
-                IsGreaterThan<_M1, _M2, _M3>(min: _M1, msg: string, flet: _M2): _M2;
-                IsLessThan<_M1, _M2, _M3>(max: _M1, msg: string, flet: _M2): _M2;
-                IsEqual<_M1, _M2, _M3>(value: _M1, msg: string, flet: _M2): _M2;
-                IsNotEqual<_M1, _M2, _M3>(value: _M1, msg: string, flet: _M2): _M2;
-            }
-        }
-    }
-}
-declare module __ABBREV {
-    
-    export import __WebSharper = IntelliFactory.WebSharper;
-    export import __Tree = IntelliFactory.Formlet.Base.Tree;
-    export import __Base = IntelliFactory.Formlet.Base;
-    export import __List = IntelliFactory.WebSharper.List;
-    export import __Reactive = IntelliFactory.Reactive;
-}
-
-declare module IntelliFactory {
-    module WebSharper {
-        module Formlet {
-            module Body {
-                var New : {
-                    (el: __ABBREV.__Html.Element, l: __ABBREV.__WebSharper.OptionProxy<{
-                        (): __ABBREV.__Html.Element;
-                    }>): __ABBREV.__Formlet.Body;
-                };
-            }
-            module Layout {
-                module Padding {
-                    var get_Default : {
-                        (): __ABBREV.__Layout.Padding;
-                    };
-                }
-                module LabelConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Layout.LabelConfiguration;
-                    };
-                }
-                module FormRowConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Layout.FormRowConfiguration;
-                    };
-                }
-                interface Align {
-                }
-                interface VerticalAlign {
-                }
-                interface FormRowConfiguration {
-                    Padding: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Layout.Padding>;
-                    Color: __ABBREV.__WebSharper.OptionProxy<{
-                        (x: number): string;
-                    }>;
-                    Class: __ABBREV.__WebSharper.OptionProxy<{
-                        (x: number): string;
-                    }>;
-                    Style: __ABBREV.__WebSharper.OptionProxy<{
-                        (x: number): string;
-                    }>;
-                    LabelConfiguration: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Layout.LabelConfiguration>;
-                }
-                interface LabelConfiguration {
-                    Align: __ABBREV.__Layout.Align;
-                    VerticalAlign: __ABBREV.__Layout.VerticalAlign;
-                    Placement: __ABBREV.__Layout.Placement;
-                }
-                interface Padding {
-                    Left: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Right: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Top: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Bottom: __ABBREV.__WebSharper.OptionProxy<number>;
-                }
-                interface Placement {
-                }
-            }
-            module Data {
-                interface Formlet<_T1> {
-                    Run(f: {
-                        (x: _T1): void;
-                    }): __ABBREV.__Html.IPagelet;
-                    Build(): __ABBREV.__Base.Form<__ABBREV.__Formlet.Body, _T1>;
-                    get_Layout(): any;
-                    MapResult<_M1>(f: {
-                        (x: __ABBREV.__Base.Result<_T1>): __ABBREV.__Base.Result<_M1>;
-                    }): __ABBREV.__Base.IFormlet<__ABBREV.__Formlet.Body, _T1>;
-                    get_Body(): __ABBREV.__Dom.Node;
-                    Render(): void;
-                    BuildInternal: {
-                        (): __ABBREV.__Base.Form<__ABBREV.__Formlet.Body, _T1>;
-                    };
-                    LayoutInternal: any;
-                    ElementInternal: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Html.Element>;
-                    FormletBase: __ABBREV.__Base.FormletProvider<__ABBREV.__Formlet.Body>;
-                    Utils: any;
-                }
-                var NewBody : {
-                    (arg00: __ABBREV.__Html.Element, arg10: __ABBREV.__WebSharper.OptionProxy<{
-                        (): __ABBREV.__Html.Element;
-                    }>): __ABBREV.__Formlet.Body;
-                };
-                var UtilsProvider : {
-                    (): any;
-                };
-                var BaseFormlet : {
-                    (): __ABBREV.__Base.FormletProvider<__ABBREV.__Formlet.Body>;
-                };
-                var PropagateRenderFrom : {
-                    <_M1, _M2, _M3>(f1: __ABBREV.__Base.IFormlet<_M1, _M2>, f2: _M3): _M3;
-                };
-                var OfIFormlet : {
-                    <_M1>(formlet: __ABBREV.__Base.IFormlet<__ABBREV.__Formlet.Body, _M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var MkFormlet : {
-                    <_M1, _M2, _M3>(f: {
-                        (): any;
-                    }): __ABBREV.__Data.Formlet<_M3>;
-                };
-                var $ : {
-                    <_M1, _M2>(f: __ABBREV.__Data.Formlet<{
-                        (x: _M1): _M2;
-                    }>, x: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var RX : {
-                    (): __ABBREV.__Reactive.IReactive;
-                };
-                var Layout : {
-                    (): __ABBREV.__Formlet.LayoutProvider;
-                };
-                var DefaultLayout : {
-                    (): any;
-                };
-                var Validator : {
-                    (): __ABBREV.__Base.Validator;
-                };
-            }
-            module Enhance {
-                module FormButtonConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.FormButtonConfiguration;
-                    };
-                }
-                module ValidationIconConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.ValidationIconConfiguration;
-                    };
-                }
-                module ValidationFrameConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.ValidationFrameConfiguration;
-                    };
-                }
-                module Padding {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.Padding;
-                    };
-                }
-                module FormContainerConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.FormContainerConfiguration;
-                    };
-                }
-                module ManyConfiguration {
-                    var get_Default : {
-                        (): __ABBREV.__Enhance.ManyConfiguration;
-                    };
-                }
-                interface FormButtonConfiguration {
-                    Label: __ABBREV.__WebSharper.OptionProxy<string>;
-                    Style: __ABBREV.__WebSharper.OptionProxy<string>;
-                    Class: __ABBREV.__WebSharper.OptionProxy<string>;
-                }
-                interface ValidationIconConfiguration {
-                    ValidIconClass: string;
-                    ErrorIconClass: string;
-                }
-                interface ValidationFrameConfiguration {
-                    ValidClass: __ABBREV.__WebSharper.OptionProxy<string>;
-                    ValidStyle: __ABBREV.__WebSharper.OptionProxy<string>;
-                    ErrorClass: __ABBREV.__WebSharper.OptionProxy<string>;
-                    ErrorStyle: __ABBREV.__WebSharper.OptionProxy<string>;
-                }
-                interface Padding {
-                    Left: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Right: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Top: __ABBREV.__WebSharper.OptionProxy<number>;
-                    Bottom: __ABBREV.__WebSharper.OptionProxy<number>;
-                }
-                interface FormPart {
-                }
-                interface FormContainerConfiguration {
-                    Header: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Enhance.FormPart>;
-                    Padding: __ABBREV.__Enhance.Padding;
-                    Description: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Enhance.FormPart>;
-                    BackgroundColor: __ABBREV.__WebSharper.OptionProxy<string>;
-                    BorderColor: __ABBREV.__WebSharper.OptionProxy<string>;
-                    CssClass: __ABBREV.__WebSharper.OptionProxy<string>;
-                    Style: __ABBREV.__WebSharper.OptionProxy<string>;
-                }
-                interface ManyConfiguration {
-                    AddIconClass: string;
-                    RemoveIconClass: string;
-                }
-                interface JsonPostConfiguration {
-                    PostUrl: __ABBREV.__WebSharper.OptionProxy<string>;
-                    ParameterName: string;
-                    EncodingType: __ABBREV.__WebSharper.OptionProxy<string>;
-                }
-                var WithResetFormlet : {
-                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, reset: __ABBREV.__Data.Formlet<_M2>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithResetAction : {
-                    <_M1>(f: {
-                        (): boolean;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithSubmitFormlet : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, submit: {
-                        (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Data.Formlet<void>;
-                    }): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithSubmitAndReset : {
-                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, submReset: {
-                        (x: {
-                            (): void;
-                        }): {
-                            (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Data.Formlet<_M2>;
-                        };
-                    }): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var InputButton : {
-                    (conf: __ABBREV.__Enhance.FormButtonConfiguration, enabled: boolean): __ABBREV.__Data.Formlet<number>;
-                };
-                var WithCustomSubmitAndResetButtons : {
-                    <_M1>(submitConf: __ABBREV.__Enhance.FormButtonConfiguration, resetConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithSubmitAndResetButtons : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCustomValidationIcon : {
-                    <_M1>(vic: __ABBREV.__Enhance.ValidationIconConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithValidationIcon : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WrapFormlet : {
-                    <_M1>(wrapper: {
-                        (x: __ABBREV.__Control.IObservableProxy<__ABBREV.__Base.Result<_M1>>): {
-                            (x: __ABBREV.__Formlet.Body): __ABBREV.__Html.Element;
-                        };
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCustomValidationFrame : {
-                    <_M1>(vc: __ABBREV.__Enhance.ValidationFrameConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCustomResetButton : {
-                    <_M1>(buttonConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithResetButton : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCustomSubmitButton : {
-                    <_M1>(buttonConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithSubmitButton : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithErrorSummary : {
-                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithValidationFrame : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithErrorFormlet : {
-                    <_M1, _M2>(f: {
-                        (x: __ABBREV.__List.T<string>): __ABBREV.__Data.Formlet<_M1>;
-                    }, formlet: __ABBREV.__Data.Formlet<_M2>): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var WithLabel : {
-                    <_M1>(labelGen: {
-                        (): __ABBREV.__Html.Element;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLabelConfiguration : {
-                    <_M1>(lc: __ABBREV.__Layout.LabelConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLabelAndInfo : {
-                    <_M1>(label: string, info: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithTextLabel : {
-                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLabelAbove : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLabelLeft : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCustomFormContainer : {
-                    <_M1>(fc: __ABBREV.__Enhance.FormContainerConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithFormContainer : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCssClass : {
-                    <_M1>(css: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLegend : {
-                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithRowConfiguration : {
-                    <_M1>(rc: __ABBREV.__Layout.FormRowConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Cancel : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, isCancel: {
-                        (x: _M1): boolean;
-                    }): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Replace : {
-                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
-                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
-                    }): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var Deletable : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
-                };
-                var Many_ : {
-                    <_M1, _M2>(add: __ABBREV.__Data.Formlet<_M1>, f: {
-                        (x: _M1): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M2>>;
-                    }): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.seq<_M2>>;
-                };
-                var CustomMany : {
-                    <_M1>(config: __ABBREV.__Enhance.ManyConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var Many : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var WithJsonPost : {
-                    <_M1>(conf: any, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Html.Element;
-                };
-            }
-            module Controls {
-                var SelectControl : {
-                    <_M1>(readOnly: boolean, def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Select : {
-                    <_M1>(def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var ReadOnlySelect : {
-                    <_M1>(def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var InputControl : {
-                    (value: string, f: {
-                        (x: __ABBREV.__Reactive.HotStream<__ABBREV.__Base.Result<string>>): __ABBREV.__Html.Element;
-                    }): __ABBREV.__Data.Formlet<string>;
-                };
-                var OnTextChange : {
-                    (f: {
-                        (): void;
-                    }, control: __ABBREV.__Html.Element): void;
-                };
-                var TextAreaControl : {
-                    (readOnly: boolean, value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var TextArea : {
-                    (value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var ReadOnlyTextArea : {
-                    (value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var InputField : {
-                    (readOnly: boolean, typ: string, cls: string, value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var CheckboxControl : {
-                    (readOnly: boolean, def: boolean): __ABBREV.__Data.Formlet<boolean>;
-                };
-                var Checkbox : {
-                    (def: boolean): __ABBREV.__Data.Formlet<boolean>;
-                };
-                var ReadOnlyCheckbox : {
-                    (def: boolean): __ABBREV.__Data.Formlet<boolean>;
-                };
-                var CheckboxGroupControl : {
-                    <_M1>(readOnly: boolean, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var CheckboxGroup : {
-                    <_M1>(values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var RadioButtonGroupControl : {
-                    <_M1>(readOnly: boolean, def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var RadioButtonGroup : {
-                    <_M1>(def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var ReadOnlyRadioButtonGroup : {
-                    <_M1>(def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Password : {
-                    (value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var Input : {
-                    (value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var ReadOnlyInput : {
-                    (value: string): __ABBREV.__Data.Formlet<string>;
-                };
-                var ElementButton : {
-                    (genElem: {
-                        (): __ABBREV.__Html.Element;
-                    }): __ABBREV.__Data.Formlet<number>;
-                };
-                var Button : {
-                    (label: string): __ABBREV.__Data.Formlet<number>;
-                };
-            }
-            module Formlet {
-                var BuildFormlet : {
-                    <_M1, _M2, _M3>(f: {
-                        (): any;
-                    }): __ABBREV.__Data.Formlet<_M3>;
-                };
-                var New : {
-                    <_M1>(f: {
-                        (): __ABBREV.__Base.Form<__ABBREV.__Formlet.Body, _M1>;
-                    }): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithLayoutOrDefault : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Return : {
-                    <_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithCancelation : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, c: __ABBREV.__Data.Formlet<void>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
-                };
-                var InitWith : {
-                    <_M1>(value: _M1, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var InitWithFailure : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Horizontal : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Vertical : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Flowlet : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var ReplaceFirstWithFailure : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Never : {
-                    <_M1>(): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Empty : {
-                    <_M1>(): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var ReturnEmpty : {
-                    <_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var BuildForm : {
-                    <_M1>(f: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Base.Form<__ABBREV.__Formlet.Body, _M1>;
-                };
-                var Deletable : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
-                };
-                var FailWith : {
-                    <_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Map : {
-                    <_M1, _M2>(f: {
-                        (x: _M1): _M2;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var MapBody : {
-                    <_M1>(f: {
-                        (x: __ABBREV.__Formlet.Body): __ABBREV.__Formlet.Body;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var MapResult : {
-                    <_M1, _M2>(f: {
-                        (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Base.Result<_M2>;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var Delay : {
-                    <_M1>(f: {
-                        (): __ABBREV.__Data.Formlet<_M1>;
-                    }): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Bind : {
-                    <_M1, _M2>(fl: __ABBREV.__Data.Formlet<_M1>, f: {
-                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
-                    }): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var Replace : {
-                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
-                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
-                    }): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var Join : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Switch : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var FlipBody : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var SelectMany : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var LiftResult : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__Base.Result<_M1>>;
-                };
-                var Sequence : {
-                    <_M1>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
-                };
-                var WithLayout : {
-                    <_M1>(l: any, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithNotification : {
-                    <_M1>(c: {
-                        (x: __ABBREV.__WebSharper.ObjectProxy): void;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var WithNotificationChannel : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<any>;
-                };
-                var ApplyLayout : {
-                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var MapElement : {
-                    <_M1>(f: {
-                        (x: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var OfElement : {
-                    (genElem: {
-                        (): __ABBREV.__Html.Element;
-                    }): __ABBREV.__Data.Formlet<void>;
-                };
-                var WithLabel : {
-                    <_M1>(label: __ABBREV.__WebSharper.OptionProxy<{
-                        (): __ABBREV.__Html.Element;
-                    }>, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Run : {
-                    <_M1>(f: {
-                        (x: _M1): void;
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Html.IPagelet;
-                };
-                var BindWith : {
-                    <_M1, _M2>(compose: {
-                        (x: __ABBREV.__Formlet.Body): {
-                            (x: __ABBREV.__Formlet.Body): __ABBREV.__Formlet.Body;
-                        };
-                    }, formlet: __ABBREV.__Data.Formlet<_M1>, f: {
-                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
-                    }): __ABBREV.__Data.Formlet<_M2>;
-                };
-                var Render : {
-                    (formlet: __ABBREV.__Data.Formlet<void>): __ABBREV.__Html.IPagelet;
-                };
-                var Choose : {
-                    <_M1>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
-                };
-                var Do : {
-                    (): __ABBREV.__Formlet.FormletBuilder;
-                };
-            }
-            module CssConstants {
-                var InputTextClass : {
-                    (): string;
-                };
-            }
-            interface Body {
-                Element: __ABBREV.__Html.Element;
-                Label: __ABBREV.__WebSharper.OptionProxy<{
-                    (): __ABBREV.__Html.Element;
-                }>;
-            }
-            interface LayoutProvider {
-                HorizontalAlignElem(align: __ABBREV.__Layout.Align, el: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
-                VerticalAlignedTD(valign: __ABBREV.__Layout.VerticalAlign, elem: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
-                MakeRow(rowConfig: __ABBREV.__Layout.FormRowConfiguration, rowIndex: number, body: __ABBREV.__Formlet.Body): __ABBREV.__Html.Element;
-                MakeLayout(lm: {
-                    (): any;
-                }): any;
-                RowLayout(rowConfig: __ABBREV.__Layout.FormRowConfiguration): any;
-                ColumnLayout(rowConfig: __ABBREV.__Layout.FormRowConfiguration): any;
-                LabelLayout(lc: __ABBREV.__Layout.LabelConfiguration): any;
-                get_Flowlet(): any;
-                get_Vertical(): any;
-                get_Horizontal(): any;
-            }
-            interface FormletBuilder {
-                Return<_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
-                Bind<_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
-                    (x: _M1): __ABBREV.__Data.Formlet<_M2>;
-                }): __ABBREV.__Data.Formlet<_M2>;
-                Delay<_M1>(f: {
-                    (): __ABBREV.__Data.Formlet<_M1>;
-                }): __ABBREV.__Data.Formlet<_M1>;
-                ReturnFrom<_M1>(f: __ABBREV.__Base.IFormlet<__ABBREV.__Formlet.Body, _M1>): __ABBREV.__Data.Formlet<_M1>;
-            }
-        }
-    }
-}
-declare module __ABBREV {
-    
-    export import __Html = IntelliFactory.WebSharper.Html;
-    export import __WebSharper = IntelliFactory.WebSharper;
-    export import __Formlet = IntelliFactory.WebSharper.Formlet;
-    export import __Layout = IntelliFactory.WebSharper.Formlet.Layout;
-    export import __Base = IntelliFactory.Formlet.Base;
-    export import __Dom = IntelliFactory.WebSharper.Dom;
-    export import __Data = IntelliFactory.WebSharper.Formlet.Data;
-    export import __Reactive = IntelliFactory.Reactive;
-    export import __Enhance = IntelliFactory.WebSharper.Formlet.Enhance;
-    export import __Control = IntelliFactory.WebSharper.Control;
-    export import __List = IntelliFactory.WebSharper.List;
-}
-
-declare module IntelliFactory {
     module WebSharper {
         module Piglets {
             module ErrorMessage {
@@ -3216,94 +2519,94 @@ declare module IntelliFactory {
                         (x: string): _M1;
                     }, toString: {
                         (x: _M1): string;
-                    }, stream: __ABBREV.__Piglets.Stream<_M1>): __ABBREV.__Html.Element;
+                    }, stream: __ABBREV.__Piglets.Stream<_M1>): __ABBREV.__Client.Element;
                 };
                 var WithLabel : {
-                    (label: string, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    (label: string, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var WithLabelAfter : {
-                    (label: string, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    (label: string, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var IntInput : {
-                    (stream: __ABBREV.__Piglets.Stream<number>): __ABBREV.__Html.Element;
+                    (stream: __ABBREV.__Piglets.Stream<number>): __ABBREV.__Client.Element;
                 };
                 var TextArea : {
-                    (stream: __ABBREV.__Piglets.Stream<string>): __ABBREV.__Html.Element;
+                    (stream: __ABBREV.__Piglets.Stream<string>): __ABBREV.__Client.Element;
                 };
                 var CheckBox : {
-                    (stream: __ABBREV.__Piglets.Stream<boolean>): __ABBREV.__Html.Element;
+                    (stream: __ABBREV.__Piglets.Stream<boolean>): __ABBREV.__Client.Element;
                 };
                 var Radio : {
-                    <_M1>(stream: __ABBREV.__Piglets.Stream<_M1>, values: __ABBREV.__WebSharper.seq<any>): __ABBREV.__Html.Element;
+                    <_M1>(stream: __ABBREV.__Piglets.Stream<_M1>, values: __ABBREV.__WebSharper.seq<any>): __ABBREV.__Client.Element;
                 };
                 var Select : {
-                    <_M1>(stream: __ABBREV.__Piglets.Stream<_M1>, values: __ABBREV.__WebSharper.seq<any>): __ABBREV.__Html.Element;
+                    <_M1>(stream: __ABBREV.__Piglets.Stream<_M1>, values: __ABBREV.__WebSharper.seq<any>): __ABBREV.__Client.Element;
                 };
                 var RenderMany : {
-                    <_M1, _M2, _M3, _M4>(stream: __ABBREV.__Many.Stream<_M1, _M2, __ABBREV.__Html.Element, _M3, _M4>, renderOne: {
+                    <_M1, _M2, _M3, _M4>(stream: __ABBREV.__Many.Stream<_M1, _M2, __ABBREV.__Client.Element, _M3, _M4>, renderOne: {
                         (x: __ABBREV.__Many.Operations): _M2;
-                    }, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var RenderChoice : {
-                    <_M1, _M2, _M3, _M4, _M5>(stream: __ABBREV.__Choose.Stream<_M1, _M2, _M3, _M4, _M5, __ABBREV.__Html.Element>, renderOne: _M5, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    <_M1, _M2, _M3, _M4, _M5>(stream: __ABBREV.__Choose.Stream<_M1, _M2, _M3, _M4, _M5, __ABBREV.__Client.Element>, renderOne: _M5, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var ShowResult : {
                     <_M1, _M2, _M3>(reader: __ABBREV.__Piglets.Reader<_M1>, render: {
                         (x: __ABBREV.__Piglets.Result<_M1>): _M2;
-                    }, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var Show : {
                     <_M1, _M2, _M3>(reader: __ABBREV.__Piglets.Reader<_M1>, render: {
                         (x: _M1): _M2;
-                    }, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var ShowString : {
                     <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, render: {
                         (x: _M1): string;
-                    }, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var ShowErrors : {
                     <_M1, _M2, _M3>(reader: __ABBREV.__Piglets.Reader<_M1>, render: {
                         (x: __ABBREV.__List.T<string>): _M2;
-                    }, container: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, container: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var EnableOnSuccess : {
-                    <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var Submit : {
-                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Html.Element;
+                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Client.Element;
                 };
                 var SubmitValidate : {
-                    <_M1>(submit: __ABBREV.__Piglets.Submitter<_M1>): __ABBREV.__Html.Element;
+                    <_M1>(submit: __ABBREV.__Piglets.Submitter<_M1>): __ABBREV.__Client.Element;
                 };
                 var Button : {
-                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Html.Element;
+                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Client.Element;
                 };
                 var ButtonValidate : {
-                    <_M1>(submit: __ABBREV.__Piglets.Submitter<_M1>): __ABBREV.__Html.Element;
+                    <_M1>(submit: __ABBREV.__Piglets.Submitter<_M1>): __ABBREV.__Client.Element;
                 };
                 var Link : {
-                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Html.Element;
+                    (submit: __ABBREV.__Piglets.Writer<void>): __ABBREV.__Client.Element;
                 };
                 var Attr : {
                     <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, attrName: string, render: {
                         (x: _M1): string;
-                    }, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var AttrResult : {
                     <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, attrName: string, render: {
                         (x: __ABBREV.__Piglets.Result<_M1>): string;
-                    }, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var Css : {
                     <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, attrName: string, render: {
                         (x: _M1): string;
-                    }, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var CssResult : {
                     <_M1>(reader: __ABBREV.__Piglets.Reader<_M1>, attrName: string, render: {
                         (x: __ABBREV.__Piglets.Result<_M1>): string;
-                    }, element: __ABBREV.__Html.Element): __ABBREV.__Html.Element;
+                    }, element: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
                 };
                 var nextId : {
                     (): {
@@ -3738,10 +3041,848 @@ declare module IntelliFactory {
 declare module __ABBREV {
     
     export import __Piglets = IntelliFactory.WebSharper.Piglets;
-    export import __Html = IntelliFactory.WebSharper.Html;
+    export import __Client = IntelliFactory.WebSharper.Html.Client;
     export import __WebSharper = IntelliFactory.WebSharper;
     export import __Many = IntelliFactory.WebSharper.Piglets.Many;
     export import __Choose = IntelliFactory.WebSharper.Piglets.Choose;
+    export import __List = IntelliFactory.WebSharper.List;
+}
+
+declare module IntelliFactory {
+    module Formlets {
+        module Base {
+            module Tree {
+                interface Edit<_T1> {
+                    GetEnumerator(): __ABBREV.__WebSharper.IEnumeratorProxy1;
+                    GetEnumerator1(): __ABBREV.__WebSharper.IEnumeratorProxy<_T1>;
+                    get_Sequence(): __ABBREV.__WebSharper.seq<_T1>;
+                }
+                interface Tree<_T1> {
+                    Map<_M1>(f: {
+                        (x: _T1): _M1;
+                    }): __ABBREV.__Tree.Tree<_M1>;
+                    GetEnumerator(): __ABBREV.__WebSharper.IEnumeratorProxy1;
+                    GetEnumerator1(): __ABBREV.__WebSharper.IEnumeratorProxy<_T1>;
+                    get_Sequence(): __ABBREV.__WebSharper.seq<_T1>;
+                }
+                var ShowEdit : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): string;
+                };
+                var Count : {
+                    <_M1>(t: __ABBREV.__Tree.Tree<_M1>): number;
+                };
+                var Range : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): any;
+                };
+                var FromSequence : {
+                    <_M1>(vs: __ABBREV.__WebSharper.seq<_M1>): __ABBREV.__Tree.Tree<_M1>;
+                };
+                var ReplacedTree : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M1>;
+                };
+                var Apply : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>, input: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M1>;
+                };
+                var Set : {
+                    <_M1>(value: _M1): __ABBREV.__Tree.Edit<_M1>;
+                };
+                var Transform : {
+                    <_M1, _M2>(f: {
+                        (x: __ABBREV.__Tree.Tree<_M1>): __ABBREV.__Tree.Tree<_M2>;
+                    }, edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M2>;
+                };
+                var Delete : {
+                    <_M1>(): __ABBREV.__Tree.Edit<_M1>;
+                };
+                var FlipEdit : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M1>;
+                };
+                var DeepFlipEdit : {
+                    <_M1>(edit: __ABBREV.__Tree.Edit<_M1>): __ABBREV.__Tree.Edit<_M1>;
+                };
+            }
+            module Result {
+                var Join : {
+                    (res: __ABBREV.__Base.Result<__ABBREV.__Base.Result<any>>): __ABBREV.__Base.Result<any>;
+                };
+                var Apply : {
+                    <_M1>(f: __ABBREV.__Base.Result<{
+                        (x: any): _M1;
+                    }>, r: __ABBREV.__Base.Result<any>): __ABBREV.__Base.Result<_M1>;
+                };
+                var OfOption : {
+                    (o: __ABBREV.__WebSharper.OptionProxy<any>): __ABBREV.__Base.Result<any>;
+                };
+                var Map : {
+                    <_M1>(f: {
+                        (x: any): _M1;
+                    }, res: __ABBREV.__Base.Result<any>): __ABBREV.__Base.Result<_M1>;
+                };
+                var Sequence : {
+                    (rs: __ABBREV.__WebSharper.seq<__ABBREV.__Base.Result<any>>): __ABBREV.__Base.Result<__ABBREV.__List.T<any>>;
+                };
+            }
+            interface Layout<_T1> {
+                Apply: {
+                    (x: any): __ABBREV.__WebSharper.OptionProxy<any>;
+                };
+            }
+            interface Container<_T1> {
+                Body: _T1;
+                SyncRoot: __ABBREV.__WebSharper.ObjectProxy;
+                Insert: {
+                    (x: number): {
+                        (x: _T1): void;
+                    };
+                };
+                Remove: {
+                    (x: __ABBREV.__WebSharper.seq<_T1>): void;
+                };
+            }
+            interface Reactive {
+                Reactive: __ABBREV.__Reactive.IReactive;
+            }
+            interface LayoutUtils {
+                Default<_M1>(): any;
+                Delay<_M1>(f: {
+                    (): any;
+                }): any;
+                New<_M1>(container: {
+                    (): any;
+                }): any;
+            }
+            interface Result<_T1> {
+            }
+            interface Form<_T1, _T2> {
+                Dispose(): void;
+                Body: any;
+                Dispose1: {
+                    (): void;
+                };
+                Notify: {
+                    (x: __ABBREV.__WebSharper.ObjectProxy): void;
+                };
+                State: any;
+            }
+            interface IFormlet<_T1, _T2> {
+                Build(): __ABBREV.__Base.Form<_T1, _T2>;
+                MapResult<_M1>(x0: {
+                    (x: __ABBREV.__Base.Result<_T2>): __ABBREV.__Base.Result<_M1>;
+                }): __ABBREV.__Base.IFormlet<_T1, _T2>;
+                get_Layout(): any;
+            }
+            interface Utils<_T1> {
+                Reactive: __ABBREV.__Reactive.IReactive;
+                DefaultLayout: any;
+            }
+            interface FormletProvider<_T1> {
+                BuildForm<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.Form<_T1, _M1>;
+                New<_M1>(build: {
+                    (): __ABBREV.__Base.Form<_T1, _M1>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                FromState<_M1>(state: any): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                WithLayout<_M1>(layout: any, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                InitWith<_M1>(value: _M1, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                ReplaceFirstWithFailure<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                InitWithFailure<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                ApplyLayout<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                AppendLayout<_M1>(layout: any, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                MapBody<_M1>(f: {
+                    (x: _T1): _T1;
+                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                WithLayoutOrDefault<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                MapResult<_M1, _M2>(f: {
+                    (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Base.Result<_M2>;
+                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Map<_M1, _M2>(f: {
+                    (x: _M1): _M2;
+                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Apply<_M1, _M2>(f: __ABBREV.__Base.IFormlet<_T1, {
+                    (x: _M1): _M2;
+                }>, x: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Return<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Fail<_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Base.Form<_T1, _M1>;
+                FailWith<_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                ReturnEmpty<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Never<_M1>(): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Empty<_M1>(): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                EmptyForm<_M1>(): __ABBREV.__Base.Form<_T1, _M1>;
+                Join<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Switch<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                FlipBody<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                SelectMany<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.IFormlet<_T1, _M1>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__List.T<_M1>>;
+                WithNotificationChannel<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, any>;
+                Replace<_M1, _M2>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
+                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Deletable<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>;
+                WithCancelation<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, cancelFormlet: __ABBREV.__Base.IFormlet<_T1, void>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__WebSharper.OptionProxy<_M1>>;
+                Bind<_M1, _M2>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
+                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Delay<_M1>(f: {
+                    (): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Sequence<_M1, _M2>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Base.IFormlet<_T1, _M2>>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__List.T<_M2>>;
+                LiftResult<_M1>(formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, __ABBREV.__Base.Result<_M1>>;
+                WithNotification<_M1>(notify: {
+                    (x: __ABBREV.__WebSharper.ObjectProxy): void;
+                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                BindWith<_M1, _M2>(hF: {
+                    (x: _T1): {
+                        (x: _T1): _T1;
+                    };
+                }, formlet: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
+                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
+            }
+            interface FormletBuilder<_T1> {
+                Return<_M1>(x: _M1): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                Bind<_M1, _M2>(x: __ABBREV.__Base.IFormlet<_T1, _M1>, f: {
+                    (x: _M1): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M2>;
+                Delay<_M1>(f: {
+                    (): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                }): __ABBREV.__Base.IFormlet<_T1, _M1>;
+                ReturnFrom<_M1>(f: _M1): _M1;
+            }
+            interface IValidatorProvider {
+                Matches(x0: string, x1: string): boolean;
+            }
+            interface Validator {
+                Validate<_M1, _M2, _M3>(f: {
+                    (x: _M2): boolean;
+                }, msg: string, flet: _M3): _M3;
+                Is<_M1, _M2, _M3>(f: {
+                    (x: _M1): boolean;
+                }, m: string, flet: _M2): _M2;
+                IsNotEmpty<_M1, _M2>(msg: string, flet: _M2): _M2;
+                IsRegexMatch<_M1, _M2>(regex: string, msg: string, flet: _M1): _M1;
+                IsEmail<_M1, _M2>(msg: string): {
+                    (x: _M1): _M1;
+                };
+                IsInt<_M1, _M2>(msg: string): {
+                    (x: _M1): _M1;
+                };
+                IsFloat<_M1, _M2>(msg: string): {
+                    (x: _M1): _M1;
+                };
+                IsTrue<_M1, _M2>(msg: string, flet: _M1): _M1;
+                IsGreaterThan<_M1, _M2, _M3>(min: _M1, msg: string, flet: _M2): _M2;
+                IsLessThan<_M1, _M2, _M3>(max: _M1, msg: string, flet: _M2): _M2;
+                IsEqual<_M1, _M2, _M3>(value: _M1, msg: string, flet: _M2): _M2;
+                IsNotEqual<_M1, _M2, _M3>(value: _M1, msg: string, flet: _M2): _M2;
+            }
+        }
+    }
+}
+declare module __ABBREV {
+    
+    export import __WebSharper = IntelliFactory.WebSharper;
+    export import __Tree = IntelliFactory.Formlets.Base.Tree;
+    export import __Base = IntelliFactory.Formlets.Base;
+    export import __List = IntelliFactory.WebSharper.List;
+    export import __Reactive = IntelliFactory.Reactive;
+}
+
+declare module IntelliFactory {
+    module WebSharper {
+        module Formlets {
+            module Body {
+                var New : {
+                    (el: __ABBREV.__Client.Element, l: __ABBREV.__WebSharper.OptionProxy<{
+                        (): __ABBREV.__Client.Element;
+                    }>): __ABBREV.__Formlets.Body;
+                };
+            }
+            module Layout {
+                module Padding {
+                    var get_Default : {
+                        (): __ABBREV.__Layout.Padding;
+                    };
+                }
+                module LabelConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Layout.LabelConfiguration;
+                    };
+                }
+                module FormRowConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Layout.FormRowConfiguration;
+                    };
+                }
+                interface Align {
+                }
+                interface VerticalAlign {
+                }
+                interface FormRowConfiguration {
+                    Padding: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Layout.Padding>;
+                    Color: __ABBREV.__WebSharper.OptionProxy<{
+                        (x: number): string;
+                    }>;
+                    Class: __ABBREV.__WebSharper.OptionProxy<{
+                        (x: number): string;
+                    }>;
+                    Style: __ABBREV.__WebSharper.OptionProxy<{
+                        (x: number): string;
+                    }>;
+                    LabelConfiguration: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Layout.LabelConfiguration>;
+                }
+                interface LabelConfiguration {
+                    Align: __ABBREV.__Layout.Align;
+                    VerticalAlign: __ABBREV.__Layout.VerticalAlign;
+                    Placement: __ABBREV.__Layout.Placement;
+                }
+                interface Padding {
+                    Left: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Right: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Top: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Bottom: __ABBREV.__WebSharper.OptionProxy<number>;
+                }
+                interface Placement {
+                }
+            }
+            module Data {
+                interface Formlet<_T1> {
+                    Run(f: {
+                        (x: _T1): void;
+                    }): __ABBREV.__Client.Pagelet;
+                    Render(): void;
+                    Build(): __ABBREV.__Base.Form<__ABBREV.__Formlets.Body, _T1>;
+                    get_Layout(): any;
+                    MapResult<_M1>(f: {
+                        (x: __ABBREV.__Base.Result<_T1>): __ABBREV.__Base.Result<_M1>;
+                    }): __ABBREV.__Base.IFormlet<__ABBREV.__Formlets.Body, _T1>;
+                    get_ElementInternal(): __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Client.Element>;
+                    set_ElementInternal(v: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Client.Element>): void;
+                    get_Body(): __ABBREV.__Dom.Node;
+                }
+                var NewBody : {
+                    (arg00: __ABBREV.__Client.Element, arg10: __ABBREV.__WebSharper.OptionProxy<{
+                        (): __ABBREV.__Client.Element;
+                    }>): __ABBREV.__Formlets.Body;
+                };
+                var UtilsProvider : {
+                    (): any;
+                };
+                var BaseFormlet : {
+                    (): __ABBREV.__Base.FormletProvider<__ABBREV.__Formlets.Body>;
+                };
+                var PropagateRenderFrom : {
+                    <_M1, _M2, _M3>(f1: __ABBREV.__Base.IFormlet<_M1, _M2>, f2: _M3): _M3;
+                };
+                var OfIFormlet : {
+                    <_M1>(formlet: __ABBREV.__Base.IFormlet<__ABBREV.__Formlets.Body, _M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var MkFormlet : {
+                    <_M1, _M2, _M3>(f: {
+                        (): any;
+                    }): __ABBREV.__Data.Formlet<_M3>;
+                };
+                var $ : {
+                    <_M1, _M2>(f: __ABBREV.__Data.Formlet<{
+                        (x: _M1): _M2;
+                    }>, x: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var RX : {
+                    (): __ABBREV.__Reactive.IReactive;
+                };
+                var Layout : {
+                    (): __ABBREV.__Formlets.LayoutProvider;
+                };
+                var DefaultLayout : {
+                    (): any;
+                };
+                var Validator : {
+                    (): __ABBREV.__Base.Validator;
+                };
+            }
+            module Enhance {
+                module FormButtonConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.FormButtonConfiguration;
+                    };
+                }
+                module ValidationIconConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.ValidationIconConfiguration;
+                    };
+                }
+                module ValidationFrameConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.ValidationFrameConfiguration;
+                    };
+                }
+                module Padding {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.Padding;
+                    };
+                }
+                module FormContainerConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.FormContainerConfiguration;
+                    };
+                }
+                module ManyConfiguration {
+                    var get_Default : {
+                        (): __ABBREV.__Enhance.ManyConfiguration;
+                    };
+                }
+                interface FormButtonConfiguration {
+                    Label: __ABBREV.__WebSharper.OptionProxy<string>;
+                    Style: __ABBREV.__WebSharper.OptionProxy<string>;
+                    Class: __ABBREV.__WebSharper.OptionProxy<string>;
+                }
+                interface ValidationIconConfiguration {
+                    ValidIconClass: string;
+                    ErrorIconClass: string;
+                }
+                interface ValidationFrameConfiguration {
+                    ValidClass: __ABBREV.__WebSharper.OptionProxy<string>;
+                    ValidStyle: __ABBREV.__WebSharper.OptionProxy<string>;
+                    ErrorClass: __ABBREV.__WebSharper.OptionProxy<string>;
+                    ErrorStyle: __ABBREV.__WebSharper.OptionProxy<string>;
+                }
+                interface Padding {
+                    Left: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Right: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Top: __ABBREV.__WebSharper.OptionProxy<number>;
+                    Bottom: __ABBREV.__WebSharper.OptionProxy<number>;
+                }
+                interface FormPart {
+                }
+                interface FormContainerConfiguration {
+                    Header: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Enhance.FormPart>;
+                    Padding: __ABBREV.__Enhance.Padding;
+                    Description: __ABBREV.__WebSharper.OptionProxy<__ABBREV.__Enhance.FormPart>;
+                    BackgroundColor: __ABBREV.__WebSharper.OptionProxy<string>;
+                    BorderColor: __ABBREV.__WebSharper.OptionProxy<string>;
+                    CssClass: __ABBREV.__WebSharper.OptionProxy<string>;
+                    Style: __ABBREV.__WebSharper.OptionProxy<string>;
+                }
+                interface ManyConfiguration {
+                    AddIconClass: string;
+                    RemoveIconClass: string;
+                }
+                interface JsonPostConfiguration {
+                    PostUrl: __ABBREV.__WebSharper.OptionProxy<string>;
+                    ParameterName: string;
+                    EncodingType: __ABBREV.__WebSharper.OptionProxy<string>;
+                }
+                var WithResetFormlet : {
+                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, reset: __ABBREV.__Data.Formlet<_M2>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithResetAction : {
+                    <_M1>(f: {
+                        (): boolean;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithSubmitFormlet : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, submit: {
+                        (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Data.Formlet<void>;
+                    }): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithSubmitAndReset : {
+                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, submReset: {
+                        (x: {
+                            (): void;
+                        }): {
+                            (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Data.Formlet<_M2>;
+                        };
+                    }): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var InputButton : {
+                    (conf: __ABBREV.__Enhance.FormButtonConfiguration, enabled: boolean): __ABBREV.__Data.Formlet<number>;
+                };
+                var WithCustomSubmitAndResetButtons : {
+                    <_M1>(submitConf: __ABBREV.__Enhance.FormButtonConfiguration, resetConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithSubmitAndResetButtons : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCustomValidationIcon : {
+                    <_M1>(vic: __ABBREV.__Enhance.ValidationIconConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithValidationIcon : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WrapFormlet : {
+                    <_M1>(wrapper: {
+                        (x: __ABBREV.__Control.IObservableProxy<__ABBREV.__Base.Result<_M1>>): {
+                            (x: __ABBREV.__Formlets.Body): __ABBREV.__Client.Element;
+                        };
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCustomValidationFrame : {
+                    <_M1>(vc: __ABBREV.__Enhance.ValidationFrameConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCustomResetButton : {
+                    <_M1>(buttonConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithResetButton : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCustomSubmitButton : {
+                    <_M1>(buttonConf: __ABBREV.__Enhance.FormButtonConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithSubmitButton : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithErrorSummary : {
+                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithValidationFrame : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithErrorFormlet : {
+                    <_M1, _M2>(f: {
+                        (x: __ABBREV.__List.T<string>): __ABBREV.__Data.Formlet<_M1>;
+                    }, formlet: __ABBREV.__Data.Formlet<_M2>): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var WithLabel : {
+                    <_M1>(labelGen: {
+                        (): __ABBREV.__Client.Element;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLabelConfiguration : {
+                    <_M1>(lc: __ABBREV.__Layout.LabelConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLabelAndInfo : {
+                    <_M1>(label: string, info: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithTextLabel : {
+                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLabelAbove : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLabelLeft : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCustomFormContainer : {
+                    <_M1>(fc: __ABBREV.__Enhance.FormContainerConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithFormContainer : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCssClass : {
+                    <_M1>(css: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLegend : {
+                    <_M1>(label: string, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithRowConfiguration : {
+                    <_M1>(rc: __ABBREV.__Layout.FormRowConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Cancel : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, isCancel: {
+                        (x: _M1): boolean;
+                    }): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Replace : {
+                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
+                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
+                    }): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var Deletable : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
+                };
+                var Many_ : {
+                    <_M1, _M2>(add: __ABBREV.__Data.Formlet<_M1>, f: {
+                        (x: _M1): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M2>>;
+                    }): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.seq<_M2>>;
+                };
+                var CustomMany : {
+                    <_M1>(config: __ABBREV.__Enhance.ManyConfiguration, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var Many : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var WithJsonPost : {
+                    <_M1>(conf: any, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Client.Element;
+                };
+            }
+            module Controls {
+                var SelectControl : {
+                    <_M1>(readOnly: boolean, def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Select : {
+                    <_M1>(def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var ReadOnlySelect : {
+                    <_M1>(def: number, vls: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var InputControl : {
+                    (value: string, f: {
+                        (x: __ABBREV.__Reactive.HotStream<__ABBREV.__Base.Result<string>>): __ABBREV.__Client.Element;
+                    }): __ABBREV.__Data.Formlet<string>;
+                };
+                var OnTextChange : {
+                    (f: {
+                        (): void;
+                    }, control: __ABBREV.__Client.Element): void;
+                };
+                var TextAreaControl : {
+                    (readOnly: boolean, value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var TextArea : {
+                    (value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var ReadOnlyTextArea : {
+                    (value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var InputField : {
+                    (readOnly: boolean, typ: string, cls: string, value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var CheckboxControl : {
+                    (readOnly: boolean, def: boolean): __ABBREV.__Data.Formlet<boolean>;
+                };
+                var Checkbox : {
+                    (def: boolean): __ABBREV.__Data.Formlet<boolean>;
+                };
+                var ReadOnlyCheckbox : {
+                    (def: boolean): __ABBREV.__Data.Formlet<boolean>;
+                };
+                var CheckboxGroupControl : {
+                    <_M1>(readOnly: boolean, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var CheckboxGroup : {
+                    <_M1>(values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var RadioButtonGroupControl : {
+                    <_M1>(readOnly: boolean, def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var RadioButtonGroup : {
+                    <_M1>(def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var ReadOnlyRadioButtonGroup : {
+                    <_M1>(def: __ABBREV.__WebSharper.OptionProxy<number>, values: __ABBREV.__List.T<any>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Password : {
+                    (value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var Input : {
+                    (value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var ReadOnlyInput : {
+                    (value: string): __ABBREV.__Data.Formlet<string>;
+                };
+                var ElementButton : {
+                    (genElem: {
+                        (): __ABBREV.__Client.Element;
+                    }): __ABBREV.__Data.Formlet<number>;
+                };
+                var Button : {
+                    (label: string): __ABBREV.__Data.Formlet<number>;
+                };
+            }
+            module Formlet {
+                var BuildFormlet : {
+                    <_M1, _M2, _M3>(f: {
+                        (): any;
+                    }): __ABBREV.__Data.Formlet<_M3>;
+                };
+                var New : {
+                    <_M1>(f: {
+                        (): __ABBREV.__Base.Form<__ABBREV.__Formlets.Body, _M1>;
+                    }): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithLayoutOrDefault : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Return : {
+                    <_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithCancelation : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>, c: __ABBREV.__Data.Formlet<void>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
+                };
+                var InitWith : {
+                    <_M1>(value: _M1, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var InitWithFailure : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Horizontal : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Vertical : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Flowlet : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var ReplaceFirstWithFailure : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Never : {
+                    <_M1>(): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Empty : {
+                    <_M1>(): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var ReturnEmpty : {
+                    <_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var BuildForm : {
+                    <_M1>(f: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Base.Form<__ABBREV.__Formlets.Body, _M1>;
+                };
+                var Deletable : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__WebSharper.OptionProxy<_M1>>;
+                };
+                var FailWith : {
+                    <_M1>(fs: __ABBREV.__List.T<string>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Map : {
+                    <_M1, _M2>(f: {
+                        (x: _M1): _M2;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var MapBody : {
+                    <_M1>(f: {
+                        (x: __ABBREV.__Formlets.Body): __ABBREV.__Formlets.Body;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var MapResult : {
+                    <_M1, _M2>(f: {
+                        (x: __ABBREV.__Base.Result<_M1>): __ABBREV.__Base.Result<_M2>;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var Delay : {
+                    <_M1>(f: {
+                        (): __ABBREV.__Data.Formlet<_M1>;
+                    }): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Bind : {
+                    <_M1, _M2>(fl: __ABBREV.__Data.Formlet<_M1>, f: {
+                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
+                    }): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var Replace : {
+                    <_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
+                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
+                    }): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var Join : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Switch : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var FlipBody : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var SelectMany : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var LiftResult : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<__ABBREV.__Base.Result<_M1>>;
+                };
+                var Sequence : {
+                    <_M1>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<__ABBREV.__List.T<_M1>>;
+                };
+                var WithLayout : {
+                    <_M1>(l: any, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithNotification : {
+                    <_M1>(c: {
+                        (x: __ABBREV.__WebSharper.ObjectProxy): void;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var WithNotificationChannel : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<any>;
+                };
+                var ApplyLayout : {
+                    <_M1>(formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var MapElement : {
+                    <_M1>(f: {
+                        (x: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var OfElement : {
+                    (genElem: {
+                        (): __ABBREV.__Client.Element;
+                    }): __ABBREV.__Data.Formlet<void>;
+                };
+                var WithLabel : {
+                    <_M1>(label: __ABBREV.__WebSharper.OptionProxy<{
+                        (): __ABBREV.__Client.Element;
+                    }>, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Run : {
+                    <_M1>(f: {
+                        (x: _M1): void;
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>): __ABBREV.__Client.Pagelet;
+                };
+                var BindWith : {
+                    <_M1, _M2>(compose: {
+                        (x: __ABBREV.__Formlets.Body): {
+                            (x: __ABBREV.__Formlets.Body): __ABBREV.__Formlets.Body;
+                        };
+                    }, formlet: __ABBREV.__Data.Formlet<_M1>, f: {
+                        (x: _M1): __ABBREV.__Data.Formlet<_M2>;
+                    }): __ABBREV.__Data.Formlet<_M2>;
+                };
+                var Render : {
+                    (formlet: __ABBREV.__Data.Formlet<void>): __ABBREV.__Client.Pagelet;
+                };
+                var Choose : {
+                    <_M1>(fs: __ABBREV.__WebSharper.seq<__ABBREV.__Data.Formlet<_M1>>): __ABBREV.__Data.Formlet<_M1>;
+                };
+                var Do : {
+                    (): __ABBREV.__Formlets.FormletBuilder;
+                };
+            }
+            module CssConstants {
+                var InputTextClass : {
+                    (): string;
+                };
+            }
+            interface Body {
+                Element: __ABBREV.__Client.Element;
+                Label: __ABBREV.__WebSharper.OptionProxy<{
+                    (): __ABBREV.__Client.Element;
+                }>;
+            }
+            interface LayoutProvider {
+                HorizontalAlignElem(align: __ABBREV.__Layout.Align, el: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
+                VerticalAlignedTD(valign: __ABBREV.__Layout.VerticalAlign, elem: __ABBREV.__Client.Element): __ABBREV.__Client.Element;
+                MakeRow(rowConfig: __ABBREV.__Layout.FormRowConfiguration, rowIndex: number, body: __ABBREV.__Formlets.Body): __ABBREV.__Client.Element;
+                MakeLayout(lm: {
+                    (): any;
+                }): any;
+                RowLayout(rowConfig: __ABBREV.__Layout.FormRowConfiguration): any;
+                ColumnLayout(rowConfig: __ABBREV.__Layout.FormRowConfiguration): any;
+                LabelLayout(lc: __ABBREV.__Layout.LabelConfiguration): any;
+                get_Flowlet(): any;
+                get_Vertical(): any;
+                get_Horizontal(): any;
+            }
+            interface FormletBuilder {
+                Return<_M1>(x: _M1): __ABBREV.__Data.Formlet<_M1>;
+                Bind<_M1, _M2>(formlet: __ABBREV.__Data.Formlet<_M1>, f: {
+                    (x: _M1): __ABBREV.__Data.Formlet<_M2>;
+                }): __ABBREV.__Data.Formlet<_M2>;
+                Delay<_M1>(f: {
+                    (): __ABBREV.__Data.Formlet<_M1>;
+                }): __ABBREV.__Data.Formlet<_M1>;
+                ReturnFrom<_M1>(f: __ABBREV.__Base.IFormlet<__ABBREV.__Formlets.Body, _M1>): __ABBREV.__Data.Formlet<_M1>;
+            }
+        }
+    }
+}
+declare module __ABBREV {
+    
+    export import __Client = IntelliFactory.WebSharper.Html.Client;
+    export import __WebSharper = IntelliFactory.WebSharper;
+    export import __Formlets = IntelliFactory.WebSharper.Formlets;
+    export import __Layout = IntelliFactory.WebSharper.Formlets.Layout;
+    export import __Base = IntelliFactory.Formlets.Base;
+    export import __Dom = IntelliFactory.WebSharper.JavaScript.Dom;
+    export import __Data = IntelliFactory.WebSharper.Formlets.Data;
+    export import __Reactive = IntelliFactory.Reactive;
+    export import __Enhance = IntelliFactory.WebSharper.Formlets.Enhance;
+    export import __Control = IntelliFactory.WebSharper.Control;
     export import __List = IntelliFactory.WebSharper.List;
 }
 
