@@ -1,15 +1,15 @@
 namespace winjs.todo
 
-open IntelliFactory.WebSharper
-open IntelliFactory.WebSharper.WinJS
+open WebSharper
+open WebSharper.WinJS
 
 [<JavaScript; Require(typeof<Resources.DarkTheme>)>]
 module Client =
     
-    open IntelliFactory.WebSharper.JQuery
-    open IntelliFactory.WebSharper.JavaScript
-    open IntelliFactory.WebSharper.Piglets
-    open IntelliFactory.WebSharper.Html.Client
+    open WebSharper.JQuery
+    open WebSharper.JavaScript
+    open WebSharper.Piglets
+    open WebSharper.Html.Client
 
     type Task =
         {
